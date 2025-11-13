@@ -16,4 +16,13 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const artists = defineCollection({
+	loader: glob({ base: './src/content/artists', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			portrait: image().optional(),
+		}),
+});
+
+export const collections = { artists, blog };
