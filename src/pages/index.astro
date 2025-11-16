@@ -12,36 +12,46 @@ import { SITE_TITLE } from "../consts";
   <head>
     <BaseHead title={SITE_TITLE} />
     <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
+      /* Фото */
+
+      .photo img {
+        max-height: 510px;
+        border-radius: 3px;
       }
-      .home-image-container {
-        width: 100%;
-      }
-      .home-image-container img {
-        display: block;
-        margin: 5% auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .home-main-container {
+
+      .container {
         display: flex;
         flex-flow: column;
         align-items: center;
+      }
+
+      .container h1 {
+        margin: 4rem 0 3rem;
+      }
+
+      .container span {
+        text-align: center;
+        margin: 2rem 0 4rem;
+      }
+
+      .container hr {
+        width: 80%;
       }
     </style>
   </head>
   <body>
     <Header />
     <main>
-      <div class="home-image-container">
-        <Image width={1020} height={510} src={HomeImage} alt="" />
+      <div class="photo">
+        <Image src={HomeImage} alt="" />
       </div>
-      <div class="home-main-container">
+      <div class="container">
         <h1>Аверде</h1>
-        <span>Энергия — это не только движение частиц, но и движение души</span>
+        <hr />
+        <span
+          >Мы верим: энергия — это не только движение частиц, но и движение
+          души. И это движение должно обрести своё художественное Слово</span
+        >
       </div>
     </main>
     <Footer />
