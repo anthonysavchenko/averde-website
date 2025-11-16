@@ -11,11 +11,19 @@
   box-shadow: var(--box-shadow);
 }
 
+/* Текстовый блок */
+
+.prose {
+  width: 720px;
+  max-width: calc(100% - 1em);
+  margin: auto;
+  color: rgb(var(--gray-dark));
+}
+
 /* Заголовок */
 
 .title {
-  margin: 2rem 0 0.5rem;
-  color: rgb(var(--black));
+  margin: 3rem 0 0.5rem;
   line-height: 1;
   text-align: center;
 }

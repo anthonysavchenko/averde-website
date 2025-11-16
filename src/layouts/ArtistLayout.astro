@@ -24,30 +24,6 @@ const arts = (await getCollection("arts"))
         max-width: 100%;
         margin: 0;
       }
-      .photo {
-        width: 100%;
-      }
-      .photo img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .prose {
-        width: 720px;
-        max-width: calc(100% - 1em);
-        margin: auto;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
     </style>
   </head>
 
@@ -60,7 +36,7 @@ const arts = (await getCollection("arts"))
         </div>
         <div class="prose">
           <div class="title">
-            <h2>{title}</h2>
+            <h3>{title}</h3>
             <div class="tag-container">
               {
                 arts.map((art) => (

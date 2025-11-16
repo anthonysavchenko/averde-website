@@ -21,21 +21,6 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
         max-width: 100%;
         margin: 0;
       }
-      .prose {
-        width: 720px;
-        max-width: calc(100% - 1em);
-        margin: auto;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
 
       /* Подзаголовок */
 
@@ -67,7 +52,7 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
                 size.map((pair) => `${pair.a} × ${pair.b} см`).join(", ")
               }
             </div>
-            <h2>{title}</h2>
+            <h3>{title}</h3>
             <div class="tag-container">
               <a class="tag" href={`/artists/${artist?.id}`}>
                 {artist?.data.title}
