@@ -14,7 +14,7 @@
 /* Заголовок */
 
 .title {
-  margin: 2rem 3rem 0.5rem;
+  margin: 2rem 0 0.5rem;
   color: rgb(var(--black));
   line-height: 1;
   text-align: center;

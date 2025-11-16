@@ -35,9 +35,8 @@ const arts = (await getCollection("arts"))
       }
       .prose {
         width: 720px;
-        max-width: calc(100% - 2em);
+        max-width: calc(100% - 1em);
         margin: auto;
-        padding: 1em;
         color: rgb(var(--gray-dark));
       }
       .title {
@@ -61,7 +60,7 @@ const arts = (await getCollection("arts"))
         </div>
         <div class="prose">
           <div class="title">
-            <h1>{title}</h1>
+            <h2>{title}</h2>
             <div class="tag-container">
               {
                 arts.map((art) => (

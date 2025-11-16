@@ -23,9 +23,8 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
       }
       .prose {
         width: 720px;
-        max-width: calc(100% - 2em);
+        max-width: calc(100% - 1em);
         margin: auto;
-        padding: 1em;
         color: rgb(var(--gray-dark));
       }
       .title {
@@ -68,7 +67,7 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
                 size.map((pair) => `${pair.a} × ${pair.b} см`).join(", ")
               }
             </div>
-            <h1>{title}</h1>
+            <h2>{title}</h2>
             <div class="tag-container">
               <a class="tag" href={`/artists/${artist?.id}`}>
                 {artist?.data.title}
