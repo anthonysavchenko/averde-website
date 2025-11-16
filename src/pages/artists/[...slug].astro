@@ -1,20 +1,20 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
-import ArtistLayout from "../../layouts/ArtistLayout.astro";
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import ArtistLayout from '../../layouts/ArtistLayout.astro';
 
 export async function getStaticPaths() {
-  const artists = await getCollection("artists");
-  return artists.map((artist) => ({
-    params: { slug: artist.id },
-    props: artist,
-  }));
+	const artists = await getCollection('artists');
+	return artists.map((artist) => ({
+		params: { slug: artist.id },
+		props: artist,
+	}));
 }
-type Props = CollectionEntry<"artists">;
+type Props = CollectionEntry<'artists'>;
 
 const artist = Astro.props;
 const { Content } = await render(artist);
 ---
 
 <ArtistLayout {...artist.data}>
-  <Content />
+	<Content />
 </ArtistLayout>
