@@ -54,14 +54,8 @@ const arts = (await getCollection("arts"))
         align-items: center;
         height: 100%;
       }
-      .title {
-        margin: 0;
-        color: rgb(var(--black));
-        line-height: 1;
-        text-align: center;
-      }
-      .date {
-        margin: 0;
+      .subtitle {
+        margin: 0 0 4rem;
         color: rgb(var(--gray));
       }
       .image-container {
@@ -107,7 +101,7 @@ const arts = (await getCollection("arts"))
                     />
                   </div>
                   <h4 class="title">{art.data.title}</h4>
-                  <p class="date">{art.data.artist?.data.title}</p>
+                  <p class="subtitle">{art.data.artist?.data.title}</p>
                 </a>
               </li>
             ))

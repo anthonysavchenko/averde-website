@@ -21,15 +21,6 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
         max-width: 100%;
         margin: 0;
       }
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
       .prose {
         width: 720px;
         max-width: calc(100% - 2em);
@@ -46,12 +37,17 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
       .title h1 {
         margin: 0 0 0.5em 0;
       }
-      .date {
+
+      /* Подзаголовок */
+
+      .subtitle {
         margin-bottom: 0.5em;
         color: rgb(var(--gray));
-      }
-      .last-updated-on {
         font-style: italic;
+      }
+
+      .subtitle:nth-of-type(3) {
+        margin-bottom: 1.5em;
       }
     </style>
   </head>
@@ -60,24 +56,23 @@ const artist = (await getCollection("artists")).find((x) => x.id === artistId);
     <Header />
     <main>
       <article>
-        <div class="hero-image">
+        <div class="photo">
           <Image width={1020} height={510} src={photo} alt={title} />
         </div>
         <div class="prose">
           <div class="title">
-            <div class="date">
-              {
-                (
-                  <div class="last-updated-on">
-                    {year}. Техника: {technic}. Размер:{" "}
-                    {size.map((pair) => `${pair.a} × ${pair.b} см.`).join(";")}
-                  </div>
-                )
+            <div class="subtitle">{year} год</div>
+            <div class="subtitle">Техника: {technic}</div>
+            <div class="subtitle">
+              Размер: {
+                size.map((pair) => `${pair.a} × ${pair.b} см`).join(", ")
               }
             </div>
             <h1>{title}</h1>
-            <div class="date">
-              <a href={`/artists/${artist?.id}`}> {artist?.data.title} </a>
+            <div class="tag-container">
+              <a class="tag" href={`/artists/${artist?.id}`}>
+                {artist?.data.title}
+              </a>
             </div>
             <hr />
           </div>
