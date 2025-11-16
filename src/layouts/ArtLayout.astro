@@ -1,13 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
 type Props = CollectionEntry<"arts">["data"];
 
-const { title, year, artist, technic, size, photo } = Astro.props;
+const { title, year, artistId, technic, size, photo } = Astro.props;
+
+const artist = (await getCollection("artists")).find((x) => x.id === artistId);
 ---
 
 <html lang="ru">
@@ -74,6 +76,9 @@ const { title, year, artist, technic, size, photo } = Astro.props;
               }
             </div>
             <h1>{title}</h1>
+            <div class="date">
+              <a href={`/artists/${artist?.id}`}> {artist?.data.title} </a>
+            </div>
             <hr />
           </div>
           <slot />

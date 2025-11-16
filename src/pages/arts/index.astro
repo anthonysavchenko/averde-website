@@ -3,13 +3,19 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
 import { SITE_TITLE } from "../../consts";
 
-const arts = (await getCollection("arts")).sort((a, b) =>
-  a.data.order <= b.data.order ? -1 : 1
-);
+const artists = await getCollection("artists");
+const arts = (await getCollection("arts"))
+  .map((art) => ({
+    ...art,
+    data: {
+      ...art.data,
+      artist: artists.find((x) => x.id === art.data.artistId),
+    },
+  }))
+  .sort((a, b) => (a.data.order <= b.data.order ? -1 : 1));
 ---
 
 <!doctype html>
@@ -58,7 +64,7 @@ const arts = (await getCollection("arts")).sort((a, b) =>
         margin: 0;
         color: rgb(var(--gray));
       }
-      .container {
+      .image-container {
         max-width: 100%;
         height: 100%;
         display: flex;
@@ -92,7 +98,7 @@ const arts = (await getCollection("arts")).sort((a, b) =>
             arts.map((art) => (
               <li>
                 <a href={`/arts/${art.id}/`}>
-                  <div class="container">
+                  <div class="image-container">
                     <Image
                       width={720}
                       height={360}
@@ -101,7 +107,7 @@ const arts = (await getCollection("arts")).sort((a, b) =>
                     />
                   </div>
                   <h4 class="title">{art.data.title}</h4>
-                  <p class="date">Author</p>
+                  <p class="date">{art.data.artist?.data.title}</p>
                 </a>
               </li>
             ))

@@ -8,7 +8,7 @@ const arts = defineCollection({
       order: z.number(),
       title: z.string(),
       year: z.number(),
-      artist: z.string(),
+      artistId: z.string(),
       technic: z.string(),
       size: z.array(z.object({
         a: z.number(),
