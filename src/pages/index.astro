@@ -12,46 +12,77 @@ import { SITE_TITLE } from "../consts";
   <head>
     <BaseHead title={SITE_TITLE} />
     <style>
+      main {
+        width: 100%;
+        max-width: 720px;
+        padding: 3em 0;
+      }
+
+      @media (max-width: 720px) {
+        main {
+          padding: 0;
+        }
+      }
+
       /* Фото */
 
+      .photo {
+        position: relative;
+      }
+
       .photo img {
-        max-height: 510px;
-        border-radius: 3px;
+        max-width: 100%;
+        border-radius: 6px;
       }
 
       .container {
         display: flex;
         flex-flow: column;
         align-items: center;
-      }
-
-      .container h1 {
-        margin: 4rem 0 3rem;
+        position: absolute;
+        bottom: 0;
+        margin: 2rem 1em 10rem;
+        background-color: rgb(256, 256, 256, 0.75);
+        border-radius: 0.3em;
       }
 
       .container span {
+        padding: 0 1em;
         text-align: center;
-        margin: 2rem 0 4rem;
+        font-size: 1.25em;
       }
 
-      .container hr {
-        width: 80%;
+      @media (max-width: 655px) {
+        .container {
+          margin: 2rem 0.5em 5rem;
+        }
       }
+
+      @media (max-width: 437px) {
+        .container {
+          margin: 2rem 0.5em 1rem;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .container span {
+          font-size: 1em;
+        }
+      }
+
     </style>
   </head>
   <body>
     <Header />
     <main>
       <div class="photo">
-        <Image src={HomeImage} alt="" />
-      </div>
-      <div class="container">
-        <h1>Аверде</h1>
-        <hr />
-        <span
-          >Мы верим: энергия — это не только движение частиц, но и движение
-          души. И это движение должно обрести своё художественное Слово</span
-        >
+        <Image src={HomeImage} alt="АВерде" />
+        <div class="container">
+          <span
+            >Мы верим: энергия — это не только движение частиц, но и движение
+            души. И это движение должно обрести своё художественное Слово</span
+          >
+        </div>
       </div>
     </main>
     <Footer />
