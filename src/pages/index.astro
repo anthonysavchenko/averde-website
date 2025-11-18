@@ -39,35 +39,12 @@ import { SITE_TITLE } from "../consts";
         display: flex;
         flex-flow: column;
         align-items: center;
-        position: absolute;
-        bottom: 0;
-        margin: 2rem 1em 10rem;
-        background-color: rgb(256, 256, 256, 0.75);
-        border-radius: 0.3em;
       }
 
       .container span {
-        padding: 0 1em;
         text-align: center;
-        font-size: 1.25em;
-      }
-
-      @media (max-width: 655px) {
-        .container {
-          margin: 2rem 0.5em 5rem;
-        }
-      }
-
-      @media (max-width: 437px) {
-        .container {
-          margin: 2rem 0.5em 1rem;
-        }
-      }
-
-      @media (max-width: 540px) {
-        .container span {
-          font-size: 1em;
-        }
+        margin: 4rem 0 4rem;
+        padding: 0 1rem;
       }
 
     </style>
@@ -77,12 +54,12 @@ import { SITE_TITLE } from "../consts";
     <main>
       <div class="photo">
         <Image src={HomeImage} alt="АВерде" />
-        <div class="container">
-          <span
-            >Мы верим: энергия — это не только движение частиц, но и движение
-            души. И это движение должно обрести своё художественное Слово</span
-          >
-        </div>
+      </div>
+      <div class="container">
+        <span
+          >Мы верим: энергия — это не только движение частиц, но и движение
+          души. И это движение должно обрести своё художественное Слово</span
+        >
       </div>
     </main>
     <Footer />
