@@ -41,25 +41,33 @@ import { SITE_TITLE } from "../consts";
         align-items: center;
       }
 
-      .container span {
+      .container span:first-child {
         text-align: center;
-        margin: 4rem 0 4rem;
+        margin: 4rem 0 1rem;
         padding: 0 1rem;
       }
 
+      .container span:last-child {
+        font-style: italic;
+        align-self: end;
+        text-align: right;
+        margin: 0 0 4rem;
+        padding: 0 1rem;
+      }
     </style>
   </head>
   <body>
     <Header />
     <main>
-      <div class="photo">
-        <Image src={HomeImage} alt="АВерде" />
-      </div>
       <div class="container">
         <span
           >Мы верим: энергия — это не только движение частиц, но и движение
-          души. И это движение должно обрести своё художественное Слово</span
+          души. И это движение должно обрести свое искусство.</span
         >
+        <span>@Творческое объединение художников АВердизма</span>
+      </div>
+      <div class="photo">
+        <Image src={HomeImage} alt="АВерде" />
       </div>
     </main>
     <Footer />
