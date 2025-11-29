@@ -1,19 +1,14 @@
 ---
-import EmailLink from "./social-links/EmailLink.astro";
-import InstagramLink from "./social-links/InstagramLink.astro";
-import TelegramLink from "./social-links/TelegramLink.astro";
+import SocialLinks from "./social-links/SocialLinks.astro";
 
 const today = new Date();
 ---
 
 <footer>
-  &copy; {today.getFullYear()} Авердизм. Все права защищены.
-  <div class="social-links">
-    <EmailLink pale />
-    <TelegramLink pale />
-    <InstagramLink pale />
-  </div>
+  <div class="copy-right">&copy; {today.getFullYear()} Авердизм. Все права защищены.</div>
+  <SocialLinks pale />
 </footer>
+
 <style>
   footer {
     padding: 2em 1em 6em 1em;
@@ -21,9 +16,8 @@ const today = new Date();
     color: rgb(var(--gray));
     text-align: center;
   }
-  .social-links {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
+
+  .copy-right {
+    margin-bottom: 1em;
   }
 </style>

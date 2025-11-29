@@ -1,0 +1,31 @@
+---
+import EmailLink from "./EmailLink.astro";
+import InstagramLink from "./InstagramLink.astro";
+import TelegramLink from "./TelegramLink.astro";
+
+type Props = {
+  pale?: boolean;
+  hideOnMobile?: boolean;
+};
+
+const { pale, hideOnMobile } = Astro.props;
+---
+
+<div class:list={["social-links", { hideOnMobile: hideOnMobile }]}>
+  <EmailLink pale={pale} />
+  <TelegramLink pale={pale} />
+  <InstagramLink pale={pale} />
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    .hideOnMobile {
+      display: none;
+    }
+  }
+</style>

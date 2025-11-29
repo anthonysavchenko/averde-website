@@ -3,6 +3,7 @@ import EmailLink from "./social-links/EmailLink.astro";
 import HeaderLink from "./HeaderLink.astro";
 import InstagramLink from "./social-links/InstagramLink.astro";
 import TelegramLink from "./social-links/TelegramLink.astro";
+import SocialLinks from "./social-links/SocialLinks.astro";
 ---
 
 <header>
@@ -13,11 +14,7 @@ import TelegramLink from "./social-links/TelegramLink.astro";
       <HeaderLink href="/artists">Художники</HeaderLink>
       <HeaderLink href="/arts">Картины</HeaderLink>
     </div>
-    <div class="social-links">
-      <EmailLink />
-      <TelegramLink />
-      <InstagramLink />
-    </div>
+    <SocialLinks hideOnMobile />
   </nav>
 </header>
 <style>
@@ -40,14 +37,5 @@ import TelegramLink from "./social-links/TelegramLink.astro";
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  .social-links,
-  .social-links a {
-    display: flex;
-  }
-  @media (max-width: 720px) {
-    .social-links {
-      display: none;
-    }
   }
 </style>

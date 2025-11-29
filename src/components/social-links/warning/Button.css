@@ -1,0 +1,4 @@
+.button:hover {
+  color: rgb(var(--black));
+  cursor: pointer;
+}
