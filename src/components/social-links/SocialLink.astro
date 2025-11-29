@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'> & {
+  pale?: boolean,
+};
+
+const { class: className, pale, ...props } = Astro.props;
+---
+<a class:list={[className, { pale: pale }]} {...props}>
+  <slot />
+</a>
+<style>
+  a {
+    display: flex;
+    padding: 1em 0.3em;
+    color: rgb(var(--gray-dark));
+  }
+
+  a.pale {
+    color: rgb(var(--grey));
+  }
+
+  a:hover {
+    color: rgb(var(--black));
+  }
+</style>

@@ -1,5 +1,8 @@
 ---
+import EmailLink from "./social-links/EmailLink.astro";
 import HeaderLink from "./HeaderLink.astro";
+import InstagramLink from "./social-links/InstagramLink.astro";
+import TelegramLink from "./social-links/TelegramLink.astro";
 ---
 
 <header>
@@ -11,49 +14,9 @@ import HeaderLink from "./HeaderLink.astro";
       <HeaderLink href="/arts">Картины</HeaderLink>
     </div>
     <div class="social-links">
-      <a href="mailto:averdespace@gmail.com">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          viewBox="0 0 50 50"
-        >
-          <g
-            transform="translate(0.000000,50.000000) scale(0.105000,-0.105000)"
-            fill="currentColor"
-            stroke="none"
-          >
-            <path
-              d="M91 446 c-43 -24 -50 -52 -51 -193 0 -204 8 -213 209 -213 202 0 211 9 211 210 0 144 -9 177 -55 198 -37 17 -282 15 -314 -2z m229 -161 c-30 -30 -61 -55 -70 -55 -9 0 -40 25 -70 55 l-54 55 124 0 124 0 -54 -55z m-173 -72 l-37 -38 0 75 0 75 37 -38 38 -37 -38 -37z m243 35 l0 -73 -37 37 -37 38 34 35 c19 19 35 35 37 35 2 0 3 -33 3 -72z m-165 -30 c19 -8 31 -8 52 1 24 11 29 9 62 -23 l36 -36 -125 0 -124 0 34 35 c19 19 35 35 36 35 2 0 15 -5 29 -12z"
-            ></path>
-          </g>
-        </svg>
-      </a>
-      <a href="https://t.me/AVerdeGallery" target="_blank">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 50 50"
-          width="50"
-          height="50"
-          ><path
-            fill="currentColor"
-            d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375  c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219  c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966  c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693  c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351  c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z"
-          ></path></svg
-        >
-      </a>
-      <a href="https://www.instagram.com/averdegallery" target="_blank">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 50 50"
-          width="50"
-          height="50"
-        >
-          <path
-            fill="currentColor"
-            d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z"
-          ></path></svg
-        >
-      </a>
+      <EmailLink />
+      <TelegramLink />
+      <InstagramLink />
     </div>
   </nav>
 </header>
@@ -69,24 +32,14 @@ import HeaderLink from "./HeaderLink.astro";
     font-size: 1em;
   }
 
-  h2 a,
-  h2 a.active {
+  h2 a {
+    color: rgb(var(--black));
     text-decoration: none;
   }
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  nav a {
-    padding: 1em 0.3em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
-  }
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent);
   }
   .social-links,
   .social-links a {

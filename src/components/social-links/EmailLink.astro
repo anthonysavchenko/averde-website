@@ -1,0 +1,25 @@
+---
+import SocialLink from "./SocialLink.astro";
+
+type Props = {
+  pale?: boolean;
+};
+
+const { pale } = Astro.props;
+---
+
+<SocialLink href="mailto:averdespace@gmail.com" pale={pale}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 50 50"
+    width="50"
+    height="50"
+  >
+    <g transform="translate(-1.000000,51.000000) scale(0.103000,-0.103000)">
+      <path
+        fill="currentColor"
+        d="M91 446 c-43 -24 -50 -52 -51 -193 0 -204 8 -213 209 -213 202 0 211 9 211 210 0 144 -9 177 -55 198 -37 17 -282 15 -314 -2z m229 -161 c-30 -30 -61 -55 -70 -55 -9 0 -40 25 -70 55 l-54 55 124 0 124 0 -54 -55z m-173 -72 l-37 -38 0 75 0 75 37 -38 38 -37 -38 -37z m243 35 l0 -73 -37 37 -37 38 34 35 c19 19 35 35 37 35 2 0 3 -33 3 -72z m-165 -30 c19 -8 31 -8 52 1 24 11 29 9 62 -23 l36 -36 -125 0 -124 0 34 35 c19 19 35 35 36 35 2 0 15 -5 29 -12z"
+      ></path>
+    </g>
+  </svg>
+</SocialLink>
