@@ -21,7 +21,7 @@ export const Button: React.FC<Props> = ({ title, children }) => {
     timeout.current = setTimeout(() => {
       timeout.current = undefined;
       setIsAlertOpen(false);
-    }, 2000);
+    }, 3500);
   };
 
   const handleAlertClick = () => {
