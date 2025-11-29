@@ -1,0 +1,21 @@
+---
+import { ALERT_BUTTON_ID } from "../../../consts";
+import Icon from "./Icon.astro";
+
+type Props = {
+  pale?: boolean;
+};
+
+const { pale } = Astro.props;
+---
+
+<div id={ALERT_BUTTON_ID} class="button">
+  <Icon pale={pale} />
+</div>
+
+<style>
+  .button:hover {
+    color: rgb(var(--black));
+    cursor: pointer;
+  }
+</style>

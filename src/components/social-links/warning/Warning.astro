@@ -1,0 +1,52 @@
+---
+import Alert from './Alert.astro';
+import Button from './Button.astro';
+
+type Props = {
+  title?: string;
+  pale?: boolean;
+};
+
+const { title, pale } = Astro.props;
+---
+
+<div class="warning">
+  {
+    title && (
+      <Button pale={pale} />
+      <Alert title={title} />
+    )
+  }
+</div>
+
+<script>
+import { ALERT_BUTTON_ID } from "../../../consts";
+
+  let timeout: NodeJS.Timeout;
+
+  const buttonClickHandler = function(event: any) {
+    console.log(event.target);
+    const alert = document.getElementById("warningAlert");
+
+    if (alert) {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+
+      timeout = setTimeout(() => { alert.style.display = "none" }, 3000)
+      alert.style.display = "flex";
+    }
+  }
+
+  const buttons = document.querySelectorAll(`#${ALERT_BUTTON_ID}`);
+      console.log(buttons);
+
+  buttons.forEach(x => x.addEventListener("click", buttonClickHandler));
+</script>
+
+<style>
+  .warning {
+    height: 24px;
+    width: 24px;
+  }
+</style>

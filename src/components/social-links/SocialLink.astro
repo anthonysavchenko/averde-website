@@ -1,27 +1,43 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
+import Warning from "./warning/Warning.astro";
 
-type Props = HTMLAttributes<'a'> & {
-  pale?: boolean,
+type Props = HTMLAttributes<"a"> & {
+  pale?: boolean;
+  warning?: string;
 };
 
-const { class: className, pale, ...props } = Astro.props;
+const { pale, warning, ...props } = Astro.props;
 ---
-<a class:list={[className, { pale: pale }]} {...props}>
-  <slot />
-</a>
+
+<div class="social-link">
+  <a class:list={["link", { pale: pale }]} {...props}>
+    <slot />
+  </a>
+  <Warning title={warning} pale={pale} />
+</div>
+
 <style>
-  a {
+  .social-link {
     display: flex;
-    padding: 1em 0.3em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.3em 0.3em 2px;
+  }
+
+  .link {
+    display: block;
+    width: 50px;
+    height: 50px;
     color: rgb(var(--gray-dark));
   }
 
-  a.pale {
+  .link.pale {
     color: rgb(var(--grey));
   }
 
-  a:hover {
+  .link:hover {
     color: rgb(var(--black));
   }
 </style>
