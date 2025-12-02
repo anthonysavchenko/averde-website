@@ -1,0 +1,57 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_TITLE } from "../consts";
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <BaseHead title={SITE_TITLE} />
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 4em 3em
+      }
+
+      @media (max-width: 720px)  {
+        .container {
+          margin: 0 1em 3em;
+        }
+      }
+
+      .message {
+        text-align: center;
+      }
+
+      #preview {
+        min-height: 500px;
+        height: 70vh;
+        width: 100%;
+        margin: 5px;
+        border: 0px;
+        box-shadow: 0 0 16px 3px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="container"> 
+        <span class="message"
+          >Чтобы оставаться в курсе последний новостей, подписывайтесь на наш
+          канал в Телеграме: <a
+            href="https://t.me/averdegallery"
+            target="_blank">https://t.me/averdegallery</a
+          ></span
+        >
+      </div>
+      <iframe id="preview" src="https://xn--r1a.website/s/averdegallery"
+      ></iframe>
+    </main>
+    <Footer />
+  </body>
+</html>
