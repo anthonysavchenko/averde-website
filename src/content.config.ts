@@ -19,7 +19,7 @@ const arts = defineCollection({
 });
 
 const artists = defineCollection({
-  loader: glob({ base: './src/content/artists', pattern: '**/*.{md,mdx}' }),
+  loader: glob({ base: './src/content/artists', pattern: '*.{md,mdx}' }),
   schema: ({ image }) =>
     z.object({
       order: z.number(),
@@ -28,4 +28,14 @@ const artists = defineCollection({
     }),
 });
 
-export const collections = { artists, arts };
+const artistsEn = defineCollection({
+  loader: glob({ base: './src/content/artists/en', pattern: '*.{md,mdx}' }),
+  schema: ({ image }) =>
+    z.object({
+      order: z.number(),
+      title: z.string(),
+      photo: image(),
+    }),
+});
+
+export const collections = { arts, artists, artistsEn };

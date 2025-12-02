@@ -12,7 +12,7 @@ const { title, year, artistId, technic, size, photo } = Astro.props;
 const artist = (await getCollection("artists")).find((x) => x.id === artistId);
 ---
 
-<html lang="ru">
+<html lang={Astro.currentLocale}>
   <head>
     <BaseHead title={title} />
     <style>

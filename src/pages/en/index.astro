@@ -1,19 +1,19 @@
 ---
 import { Image } from "astro:assets";
-import HomeImage from "../assets/home.jpg";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeImage from "../../assets/home.jpg";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
   <div class="container">
     <span
-      >Мы верим: энергия — это не только движение частиц, но и движение души. И
-      это движение должно обрести свое искусство.</span
+      >We believe that energy is not only the movement of particles but also the
+      movement of the soul. And this movement must find its artistic voice.</span
     >
-    <span>@Творческое объединение художников АВердизма</span>
+    <span>@AVerdizm Artists Creative Association</span>
   </div>
   <div class="photo">
-    <Image src={HomeImage} alt="АВердизм" />
+    <Image src={HomeImage} alt="AVerdizm" />
   </div>
 </BaseLayout>
 

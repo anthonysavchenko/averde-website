@@ -9,4 +9,11 @@ import preact from '@astrojs/preact';
 export default defineConfig({
   site: 'https://averdizm.ru',
   integrations: [mdx(), sitemap(), preact()],
+  i18n: {
+    locales: ["ru", "en"],
+    defaultLocale: "ru",
+    fallback: {
+      en: "ru"
+    }
+  },
 });

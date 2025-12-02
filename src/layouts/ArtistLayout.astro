@@ -15,7 +15,7 @@ const arts = (await getCollection("arts"))
   .sort((a, b) => (a.data.order < b.data.order ? -1 : 1));
 ---
 
-<html lang="ru">
+<html lang={Astro.currentLocale}>
   <head>
     <BaseHead title={title} />
     <style>
