@@ -1,22 +1,23 @@
 ---
-import EmailLink from "./social-links/EmailLink.astro";
+import { useTranslations } from "../ui";
 import HeaderLink from "./HeaderLink.astro";
-import InstagramLink from "./social-links/InstagramLink.astro";
-import TelegramLink from "./social-links/TelegramLink.astro";
 import SocialLinks from "./social-links/SocialLinks.astro";
+
+const { t } = useTranslations(Astro.currentLocale);
 ---
 
 <header>
   <nav>
     <h2><a href="/">AV</a></h2>
     <div class="internal-links">
-      <HeaderLink href="/about">Авердизм</HeaderLink>
-      <HeaderLink href="/artists">Художники</HeaderLink>
-      <HeaderLink href="/arts">Картины</HeaderLink>
+      <HeaderLink href="/about">{t("menu.averdizm")}</HeaderLink>
+      <HeaderLink href="/artists">{t("menu.artists")}</HeaderLink>
+      <HeaderLink href="/arts">{t("menu.arts")}</HeaderLink>
     </div>
     <SocialLinks hideOnMobile />
   </nav>
 </header>
+
 <style>
   header {
     margin: 0;

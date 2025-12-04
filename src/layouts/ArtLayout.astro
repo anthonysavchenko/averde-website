@@ -1,76 +1,76 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import BaseLayout from "./BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "../ui";
 
-type Props = CollectionEntry<"arts">["data"];
+type Props =
+  | CollectionEntry<"arts">["data"]
+  | CollectionEntry<"artsEn">["data"];
 
 const { title, year, artistId, technic, size, photo } = Astro.props;
-
-const artist = (await getCollection("artists")).find((x) => x.id === artistId);
+const artistCollectionName =
+  Astro.currentLocale === "en" ? "artistsEn" : "artists";
+const artistCollection = await getCollection(artistCollectionName);
+const artist = artistCollection.find((x) => x.id === artistId);
+const { t } = useTranslations(Astro.currentLocale);
 ---
 
-<html lang={Astro.currentLocale}>
-  <head>
-    <BaseHead title={title} />
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
-
-      /* Фото */
-
-      .photo img {
-        max-height: 510px;
-        box-shadow: var(--box-shadow);
-      } 
-
-      /* Подзаголовок */
-
-      .subtitle {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-        font-style: italic;
-      }
-
-      .subtitle:nth-of-type(3) {
-        margin-bottom: 1.5em;
-      }
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article>
-        <div class="photo">
-          <Image src={photo} alt={title} />
+<BaseLayout title={title}>
+  <article>
+    <div class="photo">
+      <Image src={photo} alt={title} />
+    </div>
+    <div class="prose">
+      <div class="title">
+        <div class="subtitle">{year} {t("art.year")}</div>
+        <div class="subtitle">{t("art.technique")}: {technic}</div>
+        <div class="subtitle">
+          {t("art.size")}: {size.map((pair) => `${pair.a} × ${pair.b} ${t("art.cm")}`).join(", ")}
         </div>
-        <div class="prose">
-          <div class="title">
-            <div class="subtitle">{year} год</div>
-            <div class="subtitle">Техника: {technic}</div>
-            <div class="subtitle">
-              Размер: {
-                size.map((pair) => `${pair.a} × ${pair.b} см`).join(", ")
-              }
-            </div>
-            <h3>{title}</h3>
-            <div class="tag-container">
-              <a class="tag" href={`/artists/${artist?.id}`}>
-                {artist?.data.title}
-              </a>
-            </div>
-            <hr />
-          </div>
-          <slot />
+        <h3>{title}</h3>
+        <div class="tag-container">
+          <a
+            class="tag"
+            href={getRelativeLocaleUrl(
+              Astro.currentLocale ?? "ru",
+              `/artists/${artist?.id}`
+            )}
+          >
+            {artist?.data.title}
+          </a>
         </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+        <hr />
+      </div>
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  main {
+    width: calc(100% - 2em);
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* Фото */
+
+  .photo img {
+    max-height: 510px;
+    box-shadow: var(--box-shadow);
+  }
+
+  /* Подзаголовок */
+
+  .subtitle {
+    margin-bottom: 0.5em;
+    color: rgb(var(--gray));
+    font-style: italic;
+  }
+
+  .subtitle:nth-of-type(3) {
+    margin-bottom: 1.5em;
+  }
+</style>

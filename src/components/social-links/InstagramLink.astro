@@ -1,17 +1,19 @@
 ---
 import SocialLink from "./SocialLink.astro";
+import { useTranslations } from "../../ui";
 
 type Props = {
   pale?: boolean;
 };
 
 const { pale } = Astro.props;
+const { t } = useTranslations(Astro.currentLocale);
 ---
 
 <SocialLink
   href="https://www.instagram.com/averdegallery"
   pale={pale}
-  warning="* Instagram — соцсеть, принадлежащая компании Meta, деятельность которой запрещена на территории Российской Федерации."
+  warning={`* ${t("warning.instagram")}`}
   target="_blank"
 >
   <svg

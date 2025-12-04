@@ -1,11 +1,16 @@
 ---
+import { useTranslations } from "../ui";
 import SocialLinks from "./social-links/SocialLinks.astro";
 
 const today = new Date();
+const { t } = useTranslations(Astro.currentLocale);
 ---
 
 <footer>
-  <div class="copy-right">&copy; {today.getFullYear()} Авердизм. Все права защищены.</div>
+  <div class="copy-right">
+    &copy; {today.getFullYear()}
+    {t("footer.copy")}
+  </div>
   <SocialLinks pale />
 </footer>
 

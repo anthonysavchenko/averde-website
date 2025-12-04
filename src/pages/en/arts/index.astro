@@ -1,10 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 
-const artists = await getCollection("artists");
-const arts = (await getCollection("arts"))
+const artists = await getCollection("artistsEn");
+const arts = (await getCollection("artsEn"))
   .map((art) => ({
     ...art,
     data: {
@@ -21,7 +21,7 @@ const arts = (await getCollection("arts"))
       {
         arts.map((art) => (
           <li>
-            <a href={`/arts/${art.id}/`}>
+            <a href={`/en/arts/${art.id}/`}>
               <div class="photo">
                 <Image src={art.data.photo} alt={art.data.title} />
               </div>

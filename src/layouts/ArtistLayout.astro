@@ -1,64 +1,64 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
 import { getCollection } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-type Props = CollectionEntry<"artists">["data"] & { id: string };
+type Props = (
+  | CollectionEntry<"artists">["data"]
+  | CollectionEntry<"artistsEn">["data"]
+) & { id: string };
 
 const { id, title, photo } = Astro.props;
-
-const arts = (await getCollection("arts"))
+const artCollectionName = Astro.currentLocale === "en" ? "artsEn" : "arts";
+const artCollection = await getCollection(artCollectionName);
+const arts = artCollection
   .filter((x) => x.data.artistId === id)
   .sort((a, b) => (a.data.order < b.data.order ? -1 : 1));
 ---
 
-<html lang={Astro.currentLocale}>
-  <head>
-    <BaseHead title={title} />
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
-
-      /* Фото */
-
-      .photo img {
-        max-height: 510px;
-        box-shadow: var(--box-shadow);
-      }
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article>
-        <div class="photo">
-          <Image src={photo} alt={title} />
+<BaseLayout title={title}>
+  <article>
+    <div class="photo">
+      <Image src={photo} alt={title} />
+    </div>
+    <div class="prose">
+      <div class="title">
+        <h3>{title}</h3>
+        <div class="tag-container">
+          {
+            arts.map((art) => (
+              <a
+                class="tag"
+                href={getRelativeLocaleUrl(
+                  Astro.currentLocale ?? "ru",
+                  `/arts/${art.id}`
+                )}
+              >
+                {art.data.title}
+              </a>
+            ))
+          }
         </div>
-        <div class="prose">
-          <div class="title">
-            <h3>{title}</h3>
-            <div class="tag-container">
-              {
-                arts.map((art) => (
-                  <a class="tag" href={`/arts/${art.id}`}>
-                    {art.data.title}
-                  </a>
-                ))
-              }
-            </div>
-            <hr />
-          </div>
-          <slot />
-        </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+        <hr />
+      </div>
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  main {
+    width: calc(100% - 2em);
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* Фото */
+
+  .photo img {
+    max-height: 510px;
+    box-shadow: var(--box-shadow);
+  }
+</style>
