@@ -1,5 +1,6 @@
 ---
 import { useTranslations } from "../ui";
+import LanguagePicker from "./LanguagePicker.astro";
 import SocialLinks from "./social-links/SocialLinks.astro";
 
 const today = new Date();
@@ -11,6 +12,7 @@ const { t } = useTranslations(Astro.currentLocale);
     &copy; {today.getFullYear()}
     {t("footer.copy")}
   </div>
+  <LanguagePicker />
   <SocialLinks pale />
 </footer>
 

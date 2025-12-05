@@ -1,0 +1,32 @@
+---
+import { ui } from "../ui";
+import { getRelativeLocaleUrl } from "astro:i18n";
+---
+
+<ul class="language-picker">
+  {
+    Object.keys(ui).map((language) => (
+      <li class="language">
+        {language !== Astro.currentLocale ? (
+          <a href={getRelativeLocaleUrl(language, "/")}>{language}</a>
+        ) : (
+          language
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .language-picker {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    padding: 0;
+    font-weight: bold;
+  }
+
+  .language {
+    display: block;
+  }
+</style>

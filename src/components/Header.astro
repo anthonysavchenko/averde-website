@@ -1,18 +1,30 @@
 ---
-import { useTranslations } from "../ui";
 import HeaderLink from "./HeaderLink.astro";
 import SocialLinks from "./social-links/SocialLinks.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "../ui";
 
 const { t } = useTranslations(Astro.currentLocale);
 ---
 
 <header>
   <nav>
-    <h2><a href="/">AV</a></h2>
+    <h2>
+      <a href={getRelativeLocaleUrl(Astro.currentLocale ?? "ru", "/")}>AV</a>
+    </h2>
     <div class="internal-links">
-      <HeaderLink href="/about">{t("menu.averdizm")}</HeaderLink>
-      <HeaderLink href="/artists">{t("menu.artists")}</HeaderLink>
-      <HeaderLink href="/arts">{t("menu.arts")}</HeaderLink>
+      <HeaderLink
+        href={getRelativeLocaleUrl(Astro.currentLocale ?? "ru", "/about")}
+        >{t("menu.averdizm")}</HeaderLink
+      >
+      <HeaderLink
+        href={getRelativeLocaleUrl(Astro.currentLocale ?? "ru", "/artists")}
+        >{t("menu.artists")}</HeaderLink
+      >
+      <HeaderLink
+        href={getRelativeLocaleUrl(Astro.currentLocale ?? "ru", "/arts")}
+        >{t("menu.arts")}</HeaderLink
+      >
     </div>
     <SocialLinks hideOnMobile />
   </nav>
