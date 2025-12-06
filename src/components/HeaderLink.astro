@@ -1,17 +1,29 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-type Props = HTMLAttributes<'a'>;
+type Props = {
+  href: string;
+}
 
-const { href, class: className, ...props } = Astro.props;
-const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
+const { href } = Astro.props;
+
+let hrefPath = href;
+let currentPath = Astro.url.pathname;
+
+if (Astro.currentLocale) {
+  hrefPath = getRelativeLocaleUrl(Astro.currentLocale, href);
+  currentPath = currentPath.replace(Astro.currentLocale, "");
+}
+
+currentPath = currentPath.match(/[^\/]+/g)?.[0] ?? "";
+
+const isActive = href === "/" + currentPath || (href === "/" && currentPath === "");
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a href={hrefPath} class:list={[{ active: isActive }]}>
   <slot />
 </a>
+
 <style>
   a {
     display: inline-block;

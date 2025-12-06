@@ -1,4 +1,5 @@
 ---
+import LanguagePicker from "../LanguagePicker.astro";
 import EmailLink from "./EmailLink.astro";
 import InstagramLink from "./InstagramLink.astro";
 import TelegramLink from "./TelegramLink.astro";
@@ -12,6 +13,7 @@ const { pale, hideOnMobile } = Astro.props;
 ---
 
 <div class:list={["social-links", { hideOnMobile: hideOnMobile }]}>
+  <LanguagePicker pale={pale} />
   <EmailLink pale={pale} />
   <TelegramLink pale={pale} />
   <InstagramLink pale={pale} />
