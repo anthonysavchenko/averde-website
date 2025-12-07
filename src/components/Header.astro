@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import MobileMenu from "./mobile-menu/MobileMenu.astro";
 import SocialLinks from "./social-links/SocialLinks.astro";
 import { useTranslations } from "../ui";
 
@@ -15,8 +16,15 @@ const { t } = useTranslations(Astro.currentLocale);
       <HeaderLink href={"/about"}>{t("menu.averdizm")}</HeaderLink>
       <HeaderLink href={"/artists"}>{t("menu.artists")}</HeaderLink>
       <HeaderLink href={"/arts"}>{t("menu.arts")}</HeaderLink>
+      <HeaderLink href={"/news"}>{t("menu.news")}</HeaderLink>
     </div>
     <SocialLinks hideOnMobile />
+    <MobileMenu>
+      <HeaderLink href={"/about"}>{t("menu.averdizm")}</HeaderLink>
+      <HeaderLink href={"/artists"}>{t("menu.artists")}</HeaderLink>
+      <HeaderLink href={"/arts"}>{t("menu.arts")}</HeaderLink>
+      <HeaderLink href={"/news"}>{t("menu.news")}</HeaderLink>
+    </MobileMenu>
   </nav>
 </header>
 
@@ -27,8 +35,10 @@ const { t } = useTranslations(Astro.currentLocale);
     background: white;
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
   }
+
   h2 {
     margin: 0;
+    line-height: 1.7;
     font-size: 1em;
   }
 
@@ -36,9 +46,16 @@ const { t } = useTranslations(Astro.currentLocale);
     color: rgb(var(--black));
     text-decoration: none;
   }
+
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  @media (max-width: 786px) {
+    .internal-links {
+      display: none;
+    }
   }
 </style>

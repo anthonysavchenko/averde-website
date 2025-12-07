@@ -27,14 +27,21 @@ const isActive = href === "/" + currentPath || (href === "/" && currentPath === 
 <style>
   a {
     display: inline-block;
-    padding: 1em 0.3em;
+    padding: 1.6em 0.3em;
     color: rgb(var(--black));
     border-bottom: 4px solid transparent;
     text-decoration: none;
   }
+
   a.active {
     text-decoration: none;
     border-bottom-color: var(--accent);
     font-weight: bolder;
+  }
+
+  @media (max-width: 720px) {
+    a {
+      padding: 1em 0.3em;
+    }
   }
 </style>
