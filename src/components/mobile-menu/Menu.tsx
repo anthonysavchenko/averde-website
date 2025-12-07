@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const Menu: React.FC<Props> = ({ children, onClose }) => (
-  <ul class="menu-items">
-    <div class="menu-header-item">
+  <ul class="mobile-menu">
+    <div class="mobile-menu-header">
       <h2 class="logo">AV</h2>
       <button class="close-button" onClick={onClose}>
         <CloseIcon />

@@ -8,7 +8,7 @@ type Props = {
 
 const { pale } = Astro.props;
 
-let currentPath = Astro.url.pathname
+let currentPath = Astro.url.pathname;
 
 if (Astro.currentLocale) {
   currentPath = currentPath.replace(`/${Astro.currentLocale}`, "");
@@ -22,7 +22,7 @@ if (Astro.currentLocale) {
         language !== Astro.currentLocale && (
           <li class:list={["language", { pale: pale }]}>
             <a href={getRelativeLocaleUrl(language, currentPath)}>
-              {language[0].toLocaleUpperCase() + language.substring(1)} 
+              {language[0].toLocaleUpperCase() + language.substring(1)}
             </a>
           </li>
         )
@@ -32,16 +32,28 @@ if (Astro.currentLocale) {
 
 <style>
   .language-picker {
-    padding: 1.3em 0.3em 2px;
+    padding: 1.37em 0.3em 2px;
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .language-picker {
+      padding-top: 1.3em;
+    }
   }
 
   .language {
     list-style: none;
   }
-  
+
   .language a {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    height: 32px;
+    width: 28px;
+
     margin: 4px 8px;
     padding: 4px 8px;
     border-radius: 6px;

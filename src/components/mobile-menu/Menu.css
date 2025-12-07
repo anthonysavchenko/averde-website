@@ -1,4 +1,4 @@
-.menu-items {
+.mobile-menu {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -10,7 +10,7 @@
   left: 0;
   z-index: 1;
   width: 100%;
-  padding: .5em 0 1.5em;
+  padding: 0.5em 0 1.5em;
   margin: 0;
   font-size: 22px;
   color: rgb(var(--black));
@@ -29,7 +29,7 @@
   }
 }
 
-.menu-header-item {
+.mobile-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
