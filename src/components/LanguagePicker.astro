@@ -7,6 +7,12 @@ type Props = {
 };
 
 const { pale } = Astro.props;
+
+let currentPath = Astro.url.pathname
+
+if (Astro.currentLocale) {
+  currentPath = currentPath.replace(`/${Astro.currentLocale}`, "");
+}
 ---
 
 <ul class="language-picker">
@@ -15,8 +21,8 @@ const { pale } = Astro.props;
       (language) =>
         language !== Astro.currentLocale && (
           <li class:list={["language", { pale: pale }]}>
-            <a href={getRelativeLocaleUrl(language, "/")}>
-              {language[0].toLocaleUpperCase() + language.substring(1)}
+            <a href={getRelativeLocaleUrl(language, currentPath)}>
+              {language[0].toLocaleUpperCase() + language.substring(1)} 
             </a>
           </li>
         )
