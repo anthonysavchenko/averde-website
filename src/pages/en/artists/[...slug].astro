@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import ArtistLayout from "../../../layouts/ArtistLayout.astro";
+import ItemLayout from "../../../layouts/artists/ItemLayout.astro";
 
 export async function getStaticPaths() {
   const artists = await getCollection("artistsEn");
@@ -17,6 +17,6 @@ const { Content } = await render(artist);
 const props = { ...artist.data, id: artist.id };
 ---
 
-<ArtistLayout {...props}>
+<ItemLayout {...props}>
   <Content />
-</ArtistLayout>
+</ItemLayout>

@@ -2,16 +2,24 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "../BaseLayout.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 type Props = (
   | CollectionEntry<"artists">["data"]
   | CollectionEntry<"artistsEn">["data"]
+  | CollectionEntry<"artistsCn">["data"]
 ) & { id: string };
 
 const { id, title, photo } = Astro.props;
-const artCollectionName = Astro.currentLocale === "en" ? "artsEn" : "arts";
+
+const artCollectionName =
+  Astro.currentLocale === "en"
+    ? "artsEn"
+    : Astro.currentLocale === "cn"
+      ? "artsCn"
+      : "arts";
+
 const artCollection = await getCollection(artCollectionName);
 const arts = artCollection
   .filter((x) => x.data.artistId === id)

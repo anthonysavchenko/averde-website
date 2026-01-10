@@ -1,63 +1,8 @@
 ---
-import { Image } from "astro:assets";
-import HomeImage from "../assets/home.jpg";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeLayout from "../layouts/HomeLayout.astro";
 ---
 
-<BaseLayout>
-  <div class="container">
-    <span
-      >Мы верим: энергия — это не только движение частиц, но и движение души. И
-      это движение должно обрести свое искусство.</span
-    >
-    <span>@Творческое объединение художников АВердизма</span>
-  </div>
-  <div class="photo">
-    <Image src={HomeImage} alt="АВердизм" />
-  </div>
-</BaseLayout>
-
-<style>
-  main {
-    width: 100%;
-    max-width: 720px;
-    padding: 3em 0;
-  }
-
-  @media (max-width: 720px) {
-    main {
-      padding: 0;
-    }
-  }
-
-  /* Фото */
-
-  .photo {
-    position: relative;
-  }
-
-  .photo img {
-    max-width: 100%;
-    border-radius: 6px;
-  }
-
-  .container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-  }
-
-  .container span:first-child {
-    text-align: center;
-    margin: 4rem 0 1rem;
-    padding: 0 1rem;
-  }
-
-  .container span:last-child {
-    font-style: italic;
-    align-self: end;
-    text-align: right;
-    margin: 0 0 4rem;
-    padding: 0 1rem;
-  }
-</style>
+<HomeLayout
+  greeting="Мы верим: энергия — это не только движение частиц, но и движение души. И это движение должно обрести свое искусство."
+  signature="Творческое объединение художников АВердизма"
+/>

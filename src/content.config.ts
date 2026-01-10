@@ -34,7 +34,10 @@ const defineArtistCollection = (base: string) =>
 
 const arts = defineArtCollection("./src/content/arts");
 const artsEn = defineArtCollection("./src/content/arts/en");
+const artsCn = defineArtCollection("./src/content/arts/cn");
+
 const artists = defineArtistCollection("./src/content/artists");
 const artistsEn = defineArtistCollection("./src/content/artists/en");
+const artistsCn = defineArtistCollection("./src/content/artists/cn");
 
-export const collections = { arts, artsEn, artists, artistsEn };
+export const collections = { arts, artsEn, artsCn, artists, artistsEn, artistsCn };

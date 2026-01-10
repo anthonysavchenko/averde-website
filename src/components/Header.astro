@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import LanguagePicker from "./LanguagePicker.astro";
 import MobileMenu from "./mobile-menu/MobileMenu.astro";
 import SocialLinks from "./social-links/SocialLinks.astro";
 import { useTranslations } from "../ui";
@@ -12,18 +13,23 @@ const { t } = useTranslations(Astro.currentLocale);
     <h2>
       <HeaderLink href={"/"}>AV</HeaderLink>
     </h2>
-    <div class="internal-links">
+    <div class="hide-on-mobile">
       <HeaderLink href={"/about"}>{t("menu.averdizm")}</HeaderLink>
       <HeaderLink href={"/artists"}>{t("menu.artists")}</HeaderLink>
       <HeaderLink href={"/arts"}>{t("menu.arts")}</HeaderLink>
       <HeaderLink href={"/news"}>{t("menu.news")}</HeaderLink>
     </div>
-    <SocialLinks hideOnMobile />
+    <div class="right-items hide-on-mobile">
+      <LanguagePicker />
+      <hr />
+      <SocialLinks />
+    </div>
     <MobileMenu>
       <HeaderLink href={"/about"}>{t("menu.averdizm")}</HeaderLink>
       <HeaderLink href={"/artists"}>{t("menu.artists")}</HeaderLink>
       <HeaderLink href={"/arts"}>{t("menu.arts")}</HeaderLink>
       <HeaderLink href={"/news"}>{t("menu.news")}</HeaderLink>
+      <LanguagePicker />
       <SocialLinks />
     </MobileMenu>
   </nav>
@@ -32,7 +38,7 @@ const { t } = useTranslations(Astro.currentLocale);
 <style>
   header {
     margin: 0;
-    padding: 0 1em;
+    padding: 0 5px;
     background: white;
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
   }
@@ -55,8 +61,17 @@ const { t } = useTranslations(Astro.currentLocale);
   }
 
   @media (max-width: 786px) {
-    .internal-links {
-      display: none;
+    .hide-on-mobile {
+      display: none !important;
     }
+  }
+
+  .right-items {
+    display: flex;
+  }
+
+  hr {
+    border-right: 1px solid rgb(var(--gray-light)); 
+    margin: 35px 7px;
   }
 </style>

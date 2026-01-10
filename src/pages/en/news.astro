@@ -1,48 +1,7 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsLayout from "../../layouts/NewsLayout.astro";
 ---
 
-<BaseLayout>
-  <div class="container">
-    <span class="message"
-      >To always be in touch, please subscribe to our Telegram channel: <a
-        href="https://t.me/averdegallery"
-        target="_blank">https://t.me/averdegallery</a
-      ></span
-    >
-  </div>
-
-  <iframe
-    id="tgwidget"
-    src="https://tgwidget.com/channel/v2.0/?id=693edfdeabbe39cfa605a4f9"
-  >
-  </iframe>
-</BaseLayout>
-
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 4em 3em;
-  }
-
-  @media (max-width: 720px) {
-    .container {
-      margin: 0 1em 3em;
-    }
-  }
-
-  .message {
-    text-align: center;
-  }
-
-  #tgwidget {
-    min-height: 500px;
-    height: 70vh;
-    width: 100%;
-    margin: 0px;
-    border: 0px;
-    box-shadow: 0 0 16px 3px rgba(0, 0, 0, 0.2);
-  }
-</style>
+<NewsLayout
+  caption="To always be in touch, please subscribe to our Telegram channel"
+/>

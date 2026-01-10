@@ -1,19 +1,27 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "../BaseLayout.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { useTranslations } from "../ui";
+import { useTranslations } from "../../ui";
 
 type Props =
   | CollectionEntry<"arts">["data"]
-  | CollectionEntry<"artsEn">["data"];
+  | CollectionEntry<"artsEn">["data"]
+  | CollectionEntry<"artsCn">["data"];
 
 const { title, year, artistId, technic, size, photo } = Astro.props;
+
 const artistCollectionName =
-  Astro.currentLocale === "en" ? "artistsEn" : "artists";
+  Astro.currentLocale === "en"
+    ? "artistsEn"
+    : Astro.currentLocale === "cn"
+      ? "artistsCn"
+      : "artists";
+
 const artistCollection = await getCollection(artistCollectionName);
 const artist = artistCollection.find((x) => x.id === artistId);
+
 const { t } = useTranslations(Astro.currentLocale);
 ---
 
@@ -27,7 +35,11 @@ const { t } = useTranslations(Astro.currentLocale);
         <div class="subtitle">{year} {t("art.year")}</div>
         <div class="subtitle">{t("art.technique")}: {technic}</div>
         <div class="subtitle">
-          {t("art.size")}: {size.map((pair) => `${pair.a} × ${pair.b} ${t("art.cm")}`).join(", ")}
+          {t("art.size")}: {
+            size
+              .map((pair) => `${pair.a} × ${pair.b} ${t("art.cm")}`)
+              .join(", ")
+          }
         </div>
         <h3>{title}</h3>
         <div class="tag-container">
@@ -35,7 +47,7 @@ const { t } = useTranslations(Astro.currentLocale);
             class="tag"
             href={getRelativeLocaleUrl(
               Astro.currentLocale ?? "ru",
-              `/artists/${artist?.id}`
+              `/artists/${artist?.id}/`
             )}
           >
             {artist?.data.title}

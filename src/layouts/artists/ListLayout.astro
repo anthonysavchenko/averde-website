@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const artistCollectionName =
+  Astro.currentLocale === "en"
+    ? "artistsEn"
+    : Astro.currentLocale === "cn"
+      ? "artistsCn"
+      : "artists";
+
+const artists = (await getCollection(artistCollectionName)).sort((a, b) =>
+  a.data.order <= b.data.order ? -1 : 1
+);
+---
+
+<BaseLayout>
+  <section>
+    <ul>
+      {
+        artists.map((artist) => (
+          <li>
+            <a
+              href={getRelativeLocaleUrl(
+                Astro.currentLocale ?? "ru",
+                `/artists/${artist.id}/`
+              )}
+            >
+              <div class="photo">
+                <Image src={artist.data.photo} alt={artist.data.title} />
+              </div>
+              <h4 class="title">{artist.data.title}</h4>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  main {
+    width: 960px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul li {
+    width: calc(50% - 1rem);
+  }
+  ul li * {
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+  ul li a {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 100%;
+  }
+  ul li a:hover h4,
+  ul li a:hover .date {
+    color: rgb(var(--accent));
+  }
+  ul a:hover img {
+    box-shadow: var(--box-shadow);
+  }
+  @media (max-width: 720px) {
+    ul {
+      gap: 0.5em;
+    }
+    ul li {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  /* Фото */
+
+  .photo img {
+    max-height: 510px;
+    box-shadow: var(--box-shadow);
+  }
+
+  /* Заголовок */
+
+  .title {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+</style>
